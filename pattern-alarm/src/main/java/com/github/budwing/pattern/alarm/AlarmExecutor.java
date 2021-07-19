@@ -30,6 +30,8 @@ public class AlarmExecutor {
 	private int emailRetryTimes = 3;
 
 	private Map<String, String> voiceMapping = new HashMap();
+	private SimpleDateFormat timeFormat = new SimpleDateFormat(
+			"yyyy年MM月dd日HH时mm分ss秒");
 
 	public String getDesease() {
 		return desease;
@@ -146,9 +148,6 @@ public class AlarmExecutor {
 	}
 
 	public boolean sendMsg(List<Employee> contacts) {
-		// 发送短信
-		SimpleDateFormat timeFormat = new SimpleDateFormat(
-				"yyyy年MM月dd日HH时mm分ss秒");
 		StringBuilder smscontent = new StringBuilder("尊敬的领导：\n");
 		smscontent.append("截止到").append(timeFormat.format(time)).append("，在")
 				.append(district).append(duration).append("天内发生了")
