@@ -148,52 +148,42 @@ public class AlarmExecutor {
 	}
 
 	public boolean sendMsg(List<Employee> contacts) {
-		StringBuilder smscontent = new StringBuilder("尊敬的领导：\n");
-		smscontent.append("截止到").append(timeFormat.format(time)).append("，在")
-				.append(district).append(duration).append("天内发生了")
+		sendSMSMessage(contacts);
+
+		sendEmailMessage(contacts);
+
+		sendPhoneMessage(contacts);
+
+		return false;
+	}
+
+	public void sendPhoneMessage(List<Employee> contacts) {
+		// 打电话
+		StringBuilder phonecontent = new StringBuilder("尊敬的领导");
+		phonecontent.append("  截止到").append(timeFormat.format(time))
+				.append(" 在").append(district).append(duration).append("天内发生了")
 				.append(patientNumber).append("起").append(desease)
-				.append("感染病例。该数据已超过历史同期水平，请注意防范疫情流行。\n")
-				.append("本信息由系统自动生成，不必回复。");
-		int index = 0;
-		try {
-			StringBuilder sb = new StringBuilder(smsURL);
-			sb.append("?msg=")
-					.append(URLEncoder.encode(smscontent.toString(), "utf-8"))
-					.append("&contacts=");
-			StringBuilder contactsStr = new StringBuilder();
-			
-			for (Employee e : contacts) {
-				if (e.getMobile() != null && !e.getMobile().isEmpty()) {
-					if (index > 0)
-						contactsStr.append(",");
-					contactsStr.append(e.getMobile());
-					index++;
-				}
-			}
-			sb.append(contactsStr);
+				.append("感染病例   该数据已超过历史同期水平  请注意防范疫情流行  ");
 
-			String smsResult = null;
-			for (int i = 0; i < smsRetryTimes; i++) {
-				URL url = new URL(sb.toString());
-				HttpURLConnection conn = (HttpURLConnection) url
-						.openConnection();
-				BufferedReader reader = new BufferedReader(
-						new InputStreamReader(conn.getInputStream()));
-				smsResult = reader.readLine();
-				if (smsResult.equals("done")) {
-					log(contacts, 1, smscontent.toString(), "success");
-					break;
-				}
-
-			}
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			log(contacts, 1, smscontent.toString(), "failure");
+		String[] voiceFiles = new String[phonecontent.length()];
+		for (int i = 0; i < phonecontent.length(); i++) {
+			voiceFiles[i] = voiceMapping.get(phonecontent.charAt(i));
 		}
 
-		// 发送邮件
+		for (Employee e : contacts) {
+			for (int i = 0; i < phoneRetryTimes; i++) {
+				if (phone(e.getTelephone(), voiceFiles)) {
+					log(e, 3, phonecontent.toString(), "success");
+					break;
+				}
+			}
+			log(e, 3, phonecontent.toString(), "failure");
+		}
+	}
 
+	public void sendEmailMessage(List<Employee> contacts) {
+		int index;
+		// 发送邮件
 		StringBuilder emailContent = new StringBuilder("尊敬的领导：<br/><br/>");
 		emailContent.append("&nbsp;&nbsp;&nbsp;&nbsp;<font color=red>")
 				.append("截止到").append(timeFormat.format(time)).append("，<b>在")
@@ -237,30 +227,52 @@ public class AlarmExecutor {
 				log(contacts, 2, emailContent.toString(), "failure");
 			}
 		}
+	}
 
-		// 打电话
-		StringBuilder phonecontent = new StringBuilder("尊敬的领导");
-		phonecontent.append("  截止到").append(timeFormat.format(time))
-				.append(" 在").append(district).append(duration).append("天内发生了")
+	public void sendSMSMessage(List<Employee> contacts) {
+		StringBuilder smscontent = new StringBuilder("尊敬的领导：\n");
+		smscontent.append("截止到").append(timeFormat.format(time)).append("，在")
+				.append(district).append(duration).append("天内发生了")
 				.append(patientNumber).append("起").append(desease)
-				.append("感染病例   该数据已超过历史同期水平  请注意防范疫情流行  ");
-
-		String[] voiceFiles = new String[phonecontent.length()];
-		for (int i = 0; i < phonecontent.length(); i++) {
-			voiceFiles[i] = voiceMapping.get(phonecontent.charAt(i));
-		}
-
-		for (Employee e : contacts) {
-			for (int i = 0; i < phoneRetryTimes; i++) {
-				if (phone(e.getTelephone(), voiceFiles)) {
-					log(e, 3, phonecontent.toString(), "success");
-					break;
+				.append("感染病例。该数据已超过历史同期水平，请注意防范疫情流行。\n")
+				.append("本信息由系统自动生成，不必回复。");
+		int index = 0;
+		try {
+			StringBuilder sb = new StringBuilder(smsURL);
+			sb.append("?msg=")
+					.append(URLEncoder.encode(smscontent.toString(), "utf-8"))
+					.append("&contacts=");
+			StringBuilder contactsStr = new StringBuilder();
+			
+			for (Employee e : contacts) {
+				if (e.getMobile() != null && !e.getMobile().isEmpty()) {
+					if (index > 0)
+						contactsStr.append(",");
+					contactsStr.append(e.getMobile());
+					index++;
 				}
 			}
-			log(e, 3, phonecontent.toString(), "failure");
-		}
+			sb.append(contactsStr);
 
-		return false;
+			String smsResult = null;
+			for (int i = 0; i < smsRetryTimes; i++) {
+				URL url = new URL(sb.toString());
+				HttpURLConnection conn = (HttpURLConnection) url
+						.openConnection();
+				BufferedReader reader = new BufferedReader(
+						new InputStreamReader(conn.getInputStream()));
+				smsResult = reader.readLine();
+				if (smsResult.equals("done")) {
+					log(contacts, 1, smscontent.toString(), "success");
+					break;
+				}
+
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			log(contacts, 1, smscontent.toString(), "failure");
+		}
 	}
 
 	public native boolean phone(String phoneNum, String[] voiceFiles);
