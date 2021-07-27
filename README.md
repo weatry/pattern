@@ -4,13 +4,22 @@ Exercise and demo for design pattern training.
 
 ## alarm
 
-It's a project for alerting.
-__Step 1: Extract timeFormat as a global property__
-*When extracting methods, variables which are used by many method should be escalate as a global property. *
+It's a project for alerting. 
+The system needs to send out different kinds of messages through different kinds of devices, such as email, phone, fax.
+When message sends out failed, the system needs to retry for at least three times.
+
+The original source code was messy, how to refactor it to pattern? 
+
+__Step 1: Extract timeFormat as a global property - git checkout alarm.1__
+
+*When extracting methods, variables which are used by many method should be escalate as a global property.*
+
+__Step 2: Extract timeFormat as a global property__
+
 
 After refactoring, the following patterns will be used to improve the quality:
 * Command Pattern
-* Factory Pattern
+* Bridge Pattern
 
 ## ferry
 
