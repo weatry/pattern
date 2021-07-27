@@ -1,6 +1,5 @@
 package com.github.budwing.pattern.alarm.message;
 
-
 public class TextAlarmMessage extends AlarmMessage {
 	public String build() {
 		StringBuilder smscontent = new StringBuilder("×ğ¾´µÄÁìµ¼£º\n");

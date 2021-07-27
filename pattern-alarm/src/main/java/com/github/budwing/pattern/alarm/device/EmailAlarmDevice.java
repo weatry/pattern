@@ -14,7 +14,6 @@ public class EmailAlarmDevice extends AlarmDevice {
 	private String smtpHost;
 	private String emailUser;
 	private String emailPassword;
-	private int emailRetryTimes = 3;
 
 	public boolean sendMessage(String msg, List<Employee> contacts) {
 
@@ -36,23 +35,17 @@ public class EmailAlarmDevice extends AlarmDevice {
 			}
 		}
 
-		for (int i = 0; i < emailRetryTimes; i++) {
-			try {
-				Message mailMsg = new MimeMessage(session);
-				mailMsg.setFrom(new InternetAddress(emailUser));
-				mailMsg.setSubject("群体性疾病预警");
-				mailMsg.setContent(msg,
-						"text/html;charset=utf-8");
-				mailMsg.setRecipients(RecipientType.TO, address);
+		try {
+			Message mailMsg = new MimeMessage(session);
+			mailMsg.setFrom(new InternetAddress(emailUser));
+			mailMsg.setSubject("群体性疾病预警");
+			mailMsg.setContent(msg, "text/html;charset=utf-8");
+			mailMsg.setRecipients(RecipientType.TO, address);
 
-				Transport.send(mailMsg);
-				log(contacts, 2, msg, "success");
-				break;
-			} catch (Exception e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-				log(contacts, 2, msg, "failure");
-			}
+			Transport.send(mailMsg);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
 
 		return true;

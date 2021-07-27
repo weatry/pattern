@@ -1,24 +1,12 @@
 package com.github.budwing.pattern.alarm;
 
-import com.github.budwing.pattern.alarm.message.HTMLAlarmMessage;
-import com.github.budwing.pattern.alarm.message.TextAlarmMessage;
-import com.github.budwing.pattern.alarm.message.VoiceAlarmMessage;
-
-import java.util.List;
-
 public class AlarmExecutor {
-	TextAlarmMessage smsMsg = new TextAlarmMessage();
-	HTMLAlarmMessage emailMsg = new HTMLAlarmMessage();
-	VoiceAlarmMessage phoneMsg = new VoiceAlarmMessage();
-
-	public boolean sendMsg(List<Employee> contacts) {
-		smsMsg.sendTo(contacts);
-
-		emailMsg.sendTo(contacts);
-
-		phoneMsg.sendTo(contacts);
-
-		return false;
+	public void execute(Alarm alarm) {
+		for (int i = 0; i < alarm.getRetryTimes(); i++) {
+			if (alarm.execute()) {
+				break;
+			}
+		}
 	}
 
 
