@@ -23,7 +23,9 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class AlarmExecutor {
-	AlarmMessage data = new AlarmMessage(new SimpleDateFormat("yyyy年MM月dd日HH时mm分ss秒"));
+	SMSAlarmMessage smsMsg = new SMSAlarmMessage();
+	EmailAlarmMessage emailMsg = new EmailAlarmMessage();
+	PhoneAlarmMessage phoneMsg = new PhoneAlarmMessage();
 	private String smsURL;
 	private String smtpHost;
 	private String emailUser;
@@ -34,46 +36,6 @@ public class AlarmExecutor {
 	private int emailRetryTimes = 3;
 
 	private Map<String, String> voiceMapping = new HashMap();
-
-	public String getDesease() {
-		return data.getDesease();
-	}
-
-	public void setDesease(String desease) {
-		this.data.setDesease(desease);
-	}
-
-	public int getDuration() {
-		return data.getDuration();
-	}
-
-	public void setDuration(int duration) {
-		this.data.setDuration(duration);
-	}
-
-	public int getPatientNumber() {
-		return data.getPatientNumber();
-	}
-
-	public void setPatientNumber(int patientNumber) {
-		this.data.setPatientNumber(patientNumber);
-	}
-
-	public String getDistrict() {
-		return data.getDistrict();
-	}
-
-	public void setDistrict(String district) {
-		this.data.setDistrict(district);
-	}
-
-	public Date getTime() {
-		return data.getTime();
-	}
-
-	public void setTime(Date time) {
-		this.data.setTime(time);
-	}
 
 	public Map<String, String> getVoiceMapping() {
 		return voiceMapping;
@@ -161,7 +123,7 @@ public class AlarmExecutor {
 
 	public void sendPhoneMessage(List<Employee> contacts) {
 		// 打电话
-		String phonecontent = data.buildPhoneMessage();
+		String phonecontent = phoneMsg.build();
 
 		String[] voiceFiles = new String[phonecontent.length()];
 		for (int i = 0; i < phonecontent.length(); i++) {
@@ -181,7 +143,7 @@ public class AlarmExecutor {
 
 	public void sendEmailMessage(List<Employee> contacts) {
 		// 发送邮件
-		String emailContent = data.buildEmailMessage();
+		String emailContent = emailMsg.build();
 		Properties prop = new Properties();
 		prop.setProperty("mail.smtp.host", smtpHost);
 		prop.setProperty("mail.smtp.user", emailUser);
@@ -221,7 +183,7 @@ public class AlarmExecutor {
 	}
 
 	public void sendSMSMessage(List<Employee> contacts) {
-		String smscontent = data.buildSMSMessage();
+		String smscontent = smsMsg.build();
 		int index = 0;
 		try {
 			StringBuilder sb = new StringBuilder(smsURL);
