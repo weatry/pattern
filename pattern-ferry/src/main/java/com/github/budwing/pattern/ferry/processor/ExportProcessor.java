@@ -7,24 +7,15 @@ import com.github.budwing.pattern.ferry.vo.FerryRequest;
  * 导出数据的处理类
  */
 public abstract class ExportProcessor {
-	protected String suffix = ".ferry";
-	protected Long partitionSize = 734003200l; //默认700M
+	protected ExportProcessor successor;
 	protected FerryRequestService ferryRequestService;
 
-	public String getSuffix() {
-		return suffix;
+	public ExportProcessor getSuccessor() {
+		return successor;
 	}
 
-	public void setSuffix(String suffix) {
-		this.suffix = suffix;
-	}
-
-	public Long getPartitionSize() {
-		return partitionSize;
-	}
-
-	public void setPartitionSize(Long partitionSize) {
-		this.partitionSize = partitionSize;
+	public void setSuccessor(ExportProcessor successor) {
+		this.successor = successor;
 	}
 
 	public FerryRequestService getFerryRequestService() {
@@ -34,36 +25,31 @@ public abstract class ExportProcessor {
 	public void setFerryRequestService(FerryRequestService ferryRequestService) {
 		this.ferryRequestService = ferryRequestService;
 	}
+	
+	public static ExportProcessor buildProcessorChain(ExportProcessor... exportProcessors) {
+		if(exportProcessors==null || exportProcessors.length<=0) {
+			return null;
+		}
+		
+		ExportProcessor root = exportProcessors[0];
+		ExportProcessor pre = root;
+		for(int i=1; i<exportProcessors.length; i++) {
+			pre.setSuccessor(exportProcessors[i]);
+			pre = exportProcessors[i];
+		}
+		
+		return root;
+	}
+	
+	public boolean process(FerryRequest request) throws Exception {
+		boolean result = doProcess(request);
+		if(result&&successor!=null) {
+			result = successor.process(request);
+		}
+		
+		return result;
+	}
 
-	/**
-	 * 收集数据
-	 * @param request
-	 * @throws Exception
-	 */
-	public abstract boolean collect(FerryRequest request) throws Exception;
-	
-	/**
-	 * 对已经收集好的数据进行加密等工作
-	 * @param request
-	 * @return
-	 * @throws Exception
-	 */
-	public abstract boolean encrypt(FerryRequest request) throws Exception;
-	
-	/**
-	 * 分块，返回true，代表应予以立即刻录；反之，不发起刻录请求。
-	 * @param request
-	 * @throws Exception
-	 */
-	public abstract boolean partition(FerryRequest request) throws Exception;
-	
-	/**
-	 * 向驱动发出刻录指令
-	 * @param request
-	 * @throws Exception
-	 */
-	public abstract void burning(FerryRequest request) throws Exception;
-	
-	public abstract String getExportCachePath();
+	protected abstract boolean doProcess(FerryRequest request) throws Exception;
 	
 }

@@ -1,6 +1,5 @@
-package com.training.refactor.ferry.processor;
+package com.github.budwing.pattern.ferry.processor;
 
-import com.github.budwing.pattern.ferry.processor.ExportProcessor;
 import com.github.budwing.pattern.ferry.vo.FerryRequest;
 
 import java.util.concurrent.BlockingQueue;
@@ -25,13 +24,7 @@ public class ProcessorThread extends Thread {
 		while (!stop) {
 			try {
 				FerryRequest request = queue.take();
-				if (processor.collect(request)) {
-					if (processor.encrypt(request)) {
-						if(processor.partition(request)) {
-							processor.burning(request);
-						}
-					}
-				}
+				processor.process(request);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
