@@ -23,7 +23,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class AlarmExecutor {
-	private AlarmMessage data = new AlarmMessage(new SimpleDateFormat("yyyy年MM月dd日HH时mm分ss秒"));
+	AlarmMessage data = new AlarmMessage(new SimpleDateFormat("yyyy年MM月dd日HH时mm分ss秒"));
 	private String smsURL;
 	private String smtpHost;
 	private String emailUser;
@@ -161,7 +161,7 @@ public class AlarmExecutor {
 
 	public void sendPhoneMessage(List<Employee> contacts) {
 		// 打电话
-		String phonecontent = buildPhoneMessage();
+		String phonecontent = data.buildPhoneMessage();
 
 		String[] voiceFiles = new String[phonecontent.length()];
 		for (int i = 0; i < phonecontent.length(); i++) {
@@ -179,18 +179,9 @@ public class AlarmExecutor {
 		}
 	}
 
-	public String buildPhoneMessage() {
-		StringBuilder phonecontent = new StringBuilder("尊敬的领导");
-		phonecontent.append("  截止到").append(data.getTimeFormat().format(data.getTime()))
-				.append(" 在").append(data.getDistrict()).append(data.getDuration()).append("天内发生了")
-				.append(data.getPatientNumber()).append("起").append(data.getDesease())
-				.append("感染病例   该数据已超过历史同期水平  请注意防范疫情流行  ");
-		return phonecontent.toString();
-	}
-
 	public void sendEmailMessage(List<Employee> contacts) {
 		// 发送邮件
-		String emailContent = buildEmailMessage();
+		String emailContent = data.buildEmailMessage();
 		Properties prop = new Properties();
 		prop.setProperty("mail.smtp.host", smtpHost);
 		prop.setProperty("mail.smtp.user", emailUser);
@@ -229,19 +220,8 @@ public class AlarmExecutor {
 		}
 	}
 
-	public String buildEmailMessage() {
-		StringBuilder emailContent = new StringBuilder("尊敬的领导：<br/><br/>");
-		emailContent.append("&nbsp;&nbsp;&nbsp;&nbsp;<font color=red>")
-				.append("截止到").append(data.getTimeFormat().format(data.getTime())).append("，<b>在")
-				.append(data.getDistrict()).append(data.getDuration()).append("天内发生了")
-				.append(data.getPatientNumber()).append("起").append(data.getDesease())
-				.append("感染病例</b>。该数据已超过历史同期水平，请注意防范疫情流行。<br/>")
-				.append("</font><br/><br/><br/>本邮件由系统自动生成，不必回复。");
-		return emailContent.toString();
-	}
-
 	public void sendSMSMessage(List<Employee> contacts) {
-		String smscontent = buildSMSMessage();
+		String smscontent = data.buildSMSMessage();
 		int index = 0;
 		try {
 			StringBuilder sb = new StringBuilder(smsURL);
@@ -279,16 +259,6 @@ public class AlarmExecutor {
 			e.printStackTrace();
 			log(contacts, 1, smscontent.toString(), "failure");
 		}
-	}
-
-	public String buildSMSMessage() {
-		StringBuilder smscontent = new StringBuilder("尊敬的领导：\n");
-		smscontent.append("截止到").append(data.getTimeFormat().format(data.getTime())).append("，在")
-				.append(data.getDistrict()).append(data.getDuration()).append("天内发生了")
-				.append(data.getPatientNumber()).append("起").append(data.getDesease())
-				.append("感染病例。该数据已超过历史同期水平，请注意防范疫情流行。\n")
-				.append("本信息由系统自动生成，不必回复。");
-		return smscontent.toString();
 	}
 
 	public native boolean phone(String phoneNum, String[] voiceFiles);
