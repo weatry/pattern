@@ -11,6 +11,8 @@ public abstract class AlarmMessage {
 	private String district;
 	private Date time;
 	private SimpleDateFormat timeFormat = new SimpleDateFormat("yyyy年MM月dd日HH时mm分ss秒");
+	
+	private AlarmDevice device;
 
 	public String getDesease() {
 		return desease;
@@ -60,17 +62,17 @@ public abstract class AlarmMessage {
 		this.timeFormat = timeFormat;
 	}
 	
-	public void log(Employee emp, int code, String msg, String state) {
-
+	public AlarmDevice getDevice() {
+		return device;
 	}
 
-	public void log(List<Employee> emps, int code, String msg, String state) {
-		for (Employee e : emps) {
-			log(e, code, msg, state);
-		}
+	public void setDevice(AlarmDevice device) {
+		this.device = device;
 	}
 
 	public abstract String build();
 	
-	public abstract boolean send(List<Employee> contacts);
+	public boolean sendTo(List<Employee> contacts) {
+		return device.sendMessage(build(), contacts);
+	}
 }

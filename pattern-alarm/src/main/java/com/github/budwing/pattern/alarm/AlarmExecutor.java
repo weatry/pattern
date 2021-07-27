@@ -8,11 +8,11 @@ public class AlarmExecutor {
 	PhoneAlarmMessage phoneMsg = new PhoneAlarmMessage();
 
 	public boolean sendMsg(List<Employee> contacts) {
-		smsMsg.send(contacts);
+		smsMsg.sendTo(contacts);
 
-		emailMsg.send(contacts);
+		emailMsg.sendTo(contacts);
 
-		phoneMsg.send(contacts);
+		phoneMsg.sendTo(contacts);
 
 		return false;
 	}
