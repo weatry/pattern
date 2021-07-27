@@ -23,12 +23,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class AlarmExecutor {
-	private String desease;
-	private int duration;
-	private int patientNumber;
-	private String district;
-	private Date time;
-
+	private AlarmMessage data = new AlarmMessage(new SimpleDateFormat("yyyy年MM月dd日HH时mm分ss秒"));
 	private String smsURL;
 	private String smtpHost;
 	private String emailUser;
@@ -39,47 +34,45 @@ public class AlarmExecutor {
 	private int emailRetryTimes = 3;
 
 	private Map<String, String> voiceMapping = new HashMap();
-	private SimpleDateFormat timeFormat = new SimpleDateFormat(
-			"yyyy年MM月dd日HH时mm分ss秒");
 
 	public String getDesease() {
-		return desease;
+		return data.getDesease();
 	}
 
 	public void setDesease(String desease) {
-		this.desease = desease;
+		this.data.setDesease(desease);
 	}
 
 	public int getDuration() {
-		return duration;
+		return data.getDuration();
 	}
 
 	public void setDuration(int duration) {
-		this.duration = duration;
+		this.data.setDuration(duration);
 	}
 
 	public int getPatientNumber() {
-		return patientNumber;
+		return data.getPatientNumber();
 	}
 
 	public void setPatientNumber(int patientNumber) {
-		this.patientNumber = patientNumber;
+		this.data.setPatientNumber(patientNumber);
 	}
 
 	public String getDistrict() {
-		return district;
+		return data.getDistrict();
 	}
 
 	public void setDistrict(String district) {
-		this.district = district;
+		this.data.setDistrict(district);
 	}
 
 	public Date getTime() {
-		return time;
+		return data.getTime();
 	}
 
 	public void setTime(Date time) {
-		this.time = time;
+		this.data.setTime(time);
 	}
 
 	public Map<String, String> getVoiceMapping() {
@@ -188,9 +181,9 @@ public class AlarmExecutor {
 
 	public String buildPhoneMessage() {
 		StringBuilder phonecontent = new StringBuilder("尊敬的领导");
-		phonecontent.append("  截止到").append(timeFormat.format(time))
-				.append(" 在").append(district).append(duration).append("天内发生了")
-				.append(patientNumber).append("起").append(desease)
+		phonecontent.append("  截止到").append(data.getTimeFormat().format(data.getTime()))
+				.append(" 在").append(data.getDistrict()).append(data.getDuration()).append("天内发生了")
+				.append(data.getPatientNumber()).append("起").append(data.getDesease())
 				.append("感染病例   该数据已超过历史同期水平  请注意防范疫情流行  ");
 		return phonecontent.toString();
 	}
@@ -239,9 +232,9 @@ public class AlarmExecutor {
 	public String buildEmailMessage() {
 		StringBuilder emailContent = new StringBuilder("尊敬的领导：<br/><br/>");
 		emailContent.append("&nbsp;&nbsp;&nbsp;&nbsp;<font color=red>")
-				.append("截止到").append(timeFormat.format(time)).append("，<b>在")
-				.append(district).append(duration).append("天内发生了")
-				.append(patientNumber).append("起").append(desease)
+				.append("截止到").append(data.getTimeFormat().format(data.getTime())).append("，<b>在")
+				.append(data.getDistrict()).append(data.getDuration()).append("天内发生了")
+				.append(data.getPatientNumber()).append("起").append(data.getDesease())
 				.append("感染病例</b>。该数据已超过历史同期水平，请注意防范疫情流行。<br/>")
 				.append("</font><br/><br/><br/>本邮件由系统自动生成，不必回复。");
 		return emailContent.toString();
@@ -290,9 +283,9 @@ public class AlarmExecutor {
 
 	public String buildSMSMessage() {
 		StringBuilder smscontent = new StringBuilder("尊敬的领导：\n");
-		smscontent.append("截止到").append(timeFormat.format(time)).append("，在")
-				.append(district).append(duration).append("天内发生了")
-				.append(patientNumber).append("起").append(desease)
+		smscontent.append("截止到").append(data.getTimeFormat().format(data.getTime())).append("，在")
+				.append(data.getDistrict()).append(data.getDuration()).append("天内发生了")
+				.append(data.getPatientNumber()).append("起").append(data.getDesease())
 				.append("感染病例。该数据已超过历史同期水平，请注意防范疫情流行。\n")
 				.append("本信息由系统自动生成，不必回复。");
 		return smscontent.toString();
