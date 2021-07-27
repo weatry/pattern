@@ -1,4 +1,7 @@
-package com.github.budwing.pattern.alarm;
+package com.github.budwing.pattern.alarm.message;
+
+import com.github.budwing.pattern.alarm.Employee;
+import com.github.budwing.pattern.alarm.device.AlarmDevice;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

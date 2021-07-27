@@ -1,4 +1,6 @@
-package com.github.budwing.pattern.alarm;
+package com.github.budwing.pattern.alarm.device;
+
+import com.github.budwing.pattern.alarm.Employee;
 
 import java.util.List;
 

@@ -1,22 +1,14 @@
-package com.github.budwing.pattern.alarm;
+package com.github.budwing.pattern.alarm.device;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.util.List;
-import java.util.Properties;
+import com.github.budwing.pattern.alarm.Employee;
 
-import javax.mail.Authenticator;
-import javax.mail.Message;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
+import javax.mail.*;
 import javax.mail.Message.RecipientType;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import java.util.List;
+import java.util.Properties;
 
 public class EmailAlarmDevice extends AlarmDevice {
 	private String smtpHost;

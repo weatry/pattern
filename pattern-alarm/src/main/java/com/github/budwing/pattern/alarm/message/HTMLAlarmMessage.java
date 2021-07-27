@@ -1,7 +1,8 @@
-package com.github.budwing.pattern.alarm;
+package com.github.budwing.pattern.alarm.message;
 
 
-public class EmailAlarmMessage extends AlarmMessage {
+
+public class HTMLAlarmMessage extends AlarmMessage {
 	public String build() {
 		StringBuilder emailContent = new StringBuilder("×ğ¾´µÄÁìµ¼£º<br/><br/>");
 		emailContent.append("&nbsp;&nbsp;&nbsp;&nbsp;<font color=red>")

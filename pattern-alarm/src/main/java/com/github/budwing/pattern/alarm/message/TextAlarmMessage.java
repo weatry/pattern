@@ -1,7 +1,7 @@
-package com.github.budwing.pattern.alarm;
+package com.github.budwing.pattern.alarm.message;
 
 
-public class SMSAlarmMessage extends AlarmMessage {
+public class TextAlarmMessage extends AlarmMessage {
 	public String build() {
 		StringBuilder smscontent = new StringBuilder("尊敬的领导：\n");
 		smscontent.append("截止到").append(getTimeFormat().format(getTime()))
