@@ -91,3 +91,8 @@ __Step 5: Protect burning files by clone them before return to users.__
 
 __Step 6: Null Object is used to remove null check in DataEncryptor.__
 
+## weather
+
+It's a shipping system. It has a service to determine whether it is suitable for sailing based on the weather condition.
+It's a very simple example to illustrate refactor and feature envy, information expert in GRASP.
+
