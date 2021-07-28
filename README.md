@@ -81,3 +81,9 @@ __Step 3: Solve FerryStatus sharing issue by Flyweight pattern.__
 
 1. FerryStatus instance is created frequently, here and there.
 2. Why don't use singleton for each instance?
+
+__Step 4: Decorator pattern is used to add additional functionality.__
+
+1. Add trivial function to a component.
+2. Why don't use chain pattern?
+
