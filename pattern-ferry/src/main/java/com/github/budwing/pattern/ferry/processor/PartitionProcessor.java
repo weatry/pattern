@@ -2,8 +2,10 @@ package com.github.budwing.pattern.ferry.processor;
 
 import com.github.budwing.pattern.ferry.service.PartitionWorker;
 import com.github.budwing.pattern.ferry.vo.FerryRequest;
-import com.github.budwing.pattern.ferry.vo.FerryStatus;
 import org.apache.log4j.Logger;
+
+import static com.github.budwing.pattern.ferry.vo.FerryStatus.*;
+import static com.github.budwing.pattern.ferry.vo.FerryStatus.getStatus;
 
 /**
  * 按指定大小分块数据，并将分好块的数据转移到burningPath中
@@ -35,19 +37,19 @@ public class PartitionProcessor extends ExportProcessor {
 		}
 		
 		boolean result = false;
-		request.setStatus(new FerryStatus(FerryStatus.PARTITION));
+		request.setStatus(getStatus(PARTITION));
 		try {
 			result = partitionWorker.doPartition(request);
 		} catch (Exception e) {
-			request.setStatus(new FerryStatus(FerryStatus.ERROR));
+			request.setStatus(getStatus(ERROR));
 			logger.error("分块出错："+e);
 			throw e;
 		}
-		request.setStatus(new FerryStatus(FerryStatus.PARTITION_COMPLETE));
+		request.setStatus(getStatus(PARTITION_COMPLETE));
 		if(!result) {
-			request.setStatus(new FerryStatus(FerryStatus.CACHE_FOR_BURNING));
+			request.setStatus(getStatus(CACHE_FOR_BURNING));
 		} else {
-			request.setStatus(new FerryStatus(FerryStatus.WAIT_BURNING));
+			request.setStatus(getStatus(WAIT_BURNING));
 		}
 		
 		if (logger.isDebugEnabled()) {

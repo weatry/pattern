@@ -1,6 +1,9 @@
 package com.github.budwing.pattern.ferry.vo;
 
+import java.lang.ref.SoftReference;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class FerryStatus {
 	public static final String NEW = "new";                 //新建，未提交审核
@@ -32,12 +35,25 @@ public class FerryStatus {
     private String statusName;
     private String statusDesc;
     private Date statusTime;
+    
+    private static Map<String, SoftReference<FerryStatus>> cache = new HashMap<String, SoftReference<FerryStatus>>();
+    
+    public static FerryStatus getStatus(String id) {
+    	SoftReference<FerryStatus> status = cache.get(id);
+    	
+    	if(status==null || status.get()==null) {
+    		status = new SoftReference<FerryStatus>(new FerryStatus(id));
+    		cache.put(id, status);
+    	}
+    	
+    	return status.get();
+    }
 
-    public FerryStatus() {
+    private FerryStatus() {
 		super();
 	}
 
-	public FerryStatus(String statusId) {
+	private FerryStatus(String statusId) {
 		super();
 		this.statusId = statusId;
 	}

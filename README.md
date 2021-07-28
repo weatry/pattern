@@ -77,3 +77,7 @@ __Step 2: Decoupling FerryRequest and FerryRequestService by Observer pattern.__
 1. Observer pattern is a good way to decouple components.
 2. Be aware of synchronized problem under multiple thread situation.
 
+__Step 3: Solve FerryStatus sharing issue by Flyweight pattern.__
+
+1. FerryStatus instance is created frequently, here and there.
+2. Why don't use singleton for each instance?

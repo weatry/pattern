@@ -1,5 +1,10 @@
 package com.github.budwing.pattern.ferry.processor;
 
+import com.github.budwing.pattern.ferry.service.DataCollector;
+import com.github.budwing.pattern.ferry.vo.FerryEntry;
+import com.github.budwing.pattern.ferry.vo.FerryRequest;
+import org.apache.log4j.Logger;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -7,11 +12,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import com.github.budwing.pattern.ferry.service.DataCollector;
-import com.github.budwing.pattern.ferry.vo.FerryEntry;
-import com.github.budwing.pattern.ferry.vo.FerryRequest;
-import com.github.budwing.pattern.ferry.vo.FerryStatus;
-import org.apache.log4j.Logger;
+import static com.github.budwing.pattern.ferry.vo.FerryStatus.*;
+
 
 /**
  * 数据收集方法。
@@ -50,7 +52,7 @@ public class CollectingProcessor extends ExportProcessor {
 		
 		//因为可能有多个条目需要执行，因此会有时间差，以这个时间点做为当前时间进行统一
 		request.setRequestExecuteTime(new Date());
-		request.setStatus(new FerryStatus(FerryStatus.GATHER));
+		request.setStatus(getStatus(GATHER));
 		
 		//脚本文件名称
 		String fileName = request.getRequestId()+suffix;
@@ -84,12 +86,12 @@ public class CollectingProcessor extends ExportProcessor {
 			}
 			writer.close();
 		} catch (Exception e) {
-			request.setStatus(new FerryStatus(FerryStatus.ERROR));
+			request.setStatus(getStatus(ERROR));
 			logger.error("收集数据出错："+e);
 			throw e;
 		}
 		
-		request.setStatus(new FerryStatus(FerryStatus.GATHER_COMPLETE));
+		request.setStatus(getStatus(GATHER_COMPLETE));
 		
 		if (logger.isDebugEnabled()) {
 			logger.debug("请求"+request.getRequestId()+"数据收集完毕！"); 
@@ -97,7 +99,7 @@ public class CollectingProcessor extends ExportProcessor {
 		
 		if (!result) {
 			//result为false时证明没有收集到任何数据
-			request.setStatus(new FerryStatus(FerryStatus.GATHER_NOTHING));
+			request.setStatus(getStatus(GATHER_NOTHING));
 		}
 		
 		return true;
