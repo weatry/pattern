@@ -66,8 +66,14 @@ After refactoring, the following patterns will be used to improve the quality:
 It's a system which is used to transport data from secure realm to unsecured realm and vice versa. 
 During the transportation, the system needs to collect data first, validate and encrypt them next, and transport them to unsecured realm finally.  
 
-__Step 1: Use chain of responsibility to separate DefaultExportProcessor's reponsibility__
+__Step 1: Use chain of responsibility to separate DefaultExportProcessor's responsibility.__
 
 1. In DefaultExportProcessor, the instance of DataEncryptor has a close relationship with method encrypt(); the instance of PartitionWorker has a close relationship with method partition(). These property won't be used in other method, so they should be extracted as a independent class.
 2. DefaultExportProcessor has too many responsibility, which violates SRP.
 3. Making the whole process like a pipeline, that will make it easier to add extra steps to the whole process.
+
+__Step 2: Decoupling FerryRequest and FerryRequestService by Observer pattern.__
+
+1. Observer pattern is a good way to decouple components.
+2. Be aware of synchronized problem under multiple thread situation.
+
