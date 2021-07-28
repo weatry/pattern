@@ -1,6 +1,5 @@
 package com.github.budwing.pattern.ferry.processor;
 
-import com.github.budwing.pattern.ferry.service.FerryRequestService;
 import com.github.budwing.pattern.ferry.vo.FerryRequest;
 
 /**
@@ -8,7 +7,6 @@ import com.github.budwing.pattern.ferry.vo.FerryRequest;
  */
 public abstract class ExportProcessor {
 	protected ExportProcessor successor;
-	protected FerryRequestService ferryRequestService;
 
 	public ExportProcessor getSuccessor() {
 		return successor;
@@ -18,14 +16,6 @@ public abstract class ExportProcessor {
 		this.successor = successor;
 	}
 
-	public FerryRequestService getFerryRequestService() {
-		return ferryRequestService;
-	}
-
-	public void setFerryRequestService(FerryRequestService ferryRequestService) {
-		this.ferryRequestService = ferryRequestService;
-	}
-	
 	public static ExportProcessor buildProcessorChain(ExportProcessor... exportProcessors) {
 		if(exportProcessors==null || exportProcessors.length<=0) {
 			return null;

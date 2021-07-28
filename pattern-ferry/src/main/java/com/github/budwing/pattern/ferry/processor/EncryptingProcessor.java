@@ -25,23 +25,23 @@ public class EncryptingProcessor extends ExportProcessor {
 			logger.debug("正在验证请求"+request.getRequestId()+"的数据！"); 
 		}
 		List<File> ferryDataFiles = request.getBurningFiles();
-		ferryRequestService.changeRequestStatus(request.getRequestId(), FerryStatus.SCAN_VIRUS);
+		request.setStatus(new FerryStatus(FerryStatus.SCAN_VIRUS));
 		try {
 			if(dataEncryptor.scanVirus(ferryDataFiles)) {
 				if(dataEncryptor.scanTrojan(ferryDataFiles)) {
-					ferryRequestService.changeRequestStatus(request.getRequestId(), FerryStatus.ENCRYPTING);
+					request.setStatus(new FerryStatus(FerryStatus.ENCRYPTING));
 					if (logger.isDebugEnabled()) {
 						logger.debug("验证"+request.getRequestId()+"的数据结束！"); 
 					}
 					return dataEncryptor.encrypt(ferryDataFiles);
 				} else {
-					ferryRequestService.changeRequestStatus(request.getRequestId(), FerryStatus.ENCRYPT_FAIL);
+					request.setStatus(new FerryStatus(FerryStatus.ENCRYPT_FAIL));
 				}
 			} else {
-				ferryRequestService.changeRequestStatus(request.getRequestId(), FerryStatus.SCAN_VIRUS_FAIL);
+				request.setStatus(new FerryStatus(FerryStatus.SCAN_VIRUS_FAIL));
 			}
 		} catch (Exception e) {
-			ferryRequestService.changeRequestStatus(request.getRequestId(), FerryStatus.ERROR);
+			request.setStatus(new FerryStatus(FerryStatus.ERROR));
 			logger.error("数据校验时出错："+e);
 			throw e;
 		}

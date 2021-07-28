@@ -4,8 +4,9 @@ import com.github.budwing.pattern.ferry.vo.FerryRequest;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Observer;
 
-public interface FerryRequestService {
+public interface FerryRequestService extends Observer {
 	public void addAndAudit(FerryRequest obj) throws Exception;
 	public void addWithStatus(Object obj, String statusId) throws Exception;
 	public void modifyAndAudit(FerryRequest obj) throws Exception;

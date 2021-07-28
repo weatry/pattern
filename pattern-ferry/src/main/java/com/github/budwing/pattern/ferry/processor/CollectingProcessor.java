@@ -1,17 +1,17 @@
 package com.github.budwing.pattern.ferry.processor;
 
-import com.github.budwing.pattern.ferry.service.DataCollector;
-import com.github.budwing.pattern.ferry.vo.FerryEntry;
-import com.github.budwing.pattern.ferry.vo.FerryRequest;
-import com.github.budwing.pattern.ferry.vo.FerryStatus;
-import org.apache.log4j.Logger;
-
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+
+import com.github.budwing.pattern.ferry.service.DataCollector;
+import com.github.budwing.pattern.ferry.vo.FerryEntry;
+import com.github.budwing.pattern.ferry.vo.FerryRequest;
+import com.github.budwing.pattern.ferry.vo.FerryStatus;
+import org.apache.log4j.Logger;
 
 /**
  * 数据收集方法。
@@ -49,8 +49,8 @@ public class CollectingProcessor extends ExportProcessor {
 		boolean result =false;
 		
 		//因为可能有多个条目需要执行，因此会有时间差，以这个时间点做为当前时间进行统一
-		Date execTime = new Date();
-		ferryRequestService.changeRequestStatus(request.getRequestId(), FerryStatus.GATHER);
+		request.setRequestExecuteTime(new Date());
+		request.setStatus(new FerryStatus(FerryStatus.GATHER));
 		
 		//脚本文件名称
 		String fileName = request.getRequestId()+suffix;
@@ -69,8 +69,7 @@ public class CollectingProcessor extends ExportProcessor {
 					//依据文件、数据库选择不同的数据收集器
 					dataCollector = dataCollectors.get(entry.getEntryObjType());
 					if (dataCollector != null) {
-						script = dataCollector.collectEntry(request, entry,
-								execTime);
+						script = dataCollector.collectEntry(request, entry);
 						if (script != null && script.length() > 0) {
 							writer.write(script);
 							writer.newLine();
@@ -85,13 +84,12 @@ public class CollectingProcessor extends ExportProcessor {
 			}
 			writer.close();
 		} catch (Exception e) {
-			ferryRequestService.changeRequestStatus(request.getRequestId(), FerryStatus.ERROR);
+			request.setStatus(new FerryStatus(FerryStatus.ERROR));
 			logger.error("收集数据出错："+e);
 			throw e;
 		}
 		
-		ferryRequestService.saveExecTime(request.getRequestId(), execTime);
-		ferryRequestService.changeRequestStatus(request.getRequestId(), FerryStatus.GATHER_COMPLETE);
+		request.setStatus(new FerryStatus(FerryStatus.GATHER_COMPLETE));
 		
 		if (logger.isDebugEnabled()) {
 			logger.debug("请求"+request.getRequestId()+"数据收集完毕！"); 
@@ -99,8 +97,7 @@ public class CollectingProcessor extends ExportProcessor {
 		
 		if (!result) {
 			//result为false时证明没有收集到任何数据
-			ferryRequestService.changeRequestStatus(request.getRequestId(),
-					FerryStatus.GATHER_NOTHING);
+			request.setStatus(new FerryStatus(FerryStatus.GATHER_NOTHING));
 		}
 		
 		return true;

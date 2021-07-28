@@ -3,8 +3,9 @@ package com.github.budwing.pattern.ferry.vo;
 import java.io.File;
 import java.util.Date;
 import java.util.List;
+import java.util.Observable;
 
-public class FerryRequest {
+public class FerryRequest extends Observable {
     private String requestId;
     private String taskId;
     private String userId;
@@ -19,6 +20,7 @@ public class FerryRequest {
     
     private List<FerryEntry> entrys;
     private List<File> burningFiles;
+    private FerryStatus status;
     
     public FerryRequest(String requestId, String taskId, String userId,
 			Integer priorityId, String requestBurningType,
@@ -123,6 +125,7 @@ public class FerryRequest {
 
     public void setRequestExecuteTime(Date requestExecuteTime) {
         this.requestExecuteTime = requestExecuteTime;
+        this.setChanged();
     }
 
     public Date getRequestCompleteTime() {
@@ -147,5 +150,14 @@ public class FerryRequest {
 
 	public void setBurningFiles(List<File> burningFiles) {
 		this.burningFiles = burningFiles;
+	}
+
+	public FerryStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(FerryStatus status) {
+		this.status = status;
+		this.setChanged();
 	}
 }

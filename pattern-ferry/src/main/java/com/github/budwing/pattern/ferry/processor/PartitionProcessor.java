@@ -35,21 +35,19 @@ public class PartitionProcessor extends ExportProcessor {
 		}
 		
 		boolean result = false;
-		
-		ferryRequestService.changeRequestStatus(request.getRequestId(), FerryStatus.PARTITION);
+		request.setStatus(new FerryStatus(FerryStatus.PARTITION));
 		try {
 			result = partitionWorker.doPartition(request);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			ferryRequestService.changeRequestStatus(request.getRequestId(), FerryStatus.ERROR);
+			request.setStatus(new FerryStatus(FerryStatus.ERROR));
 			logger.error("·Ö¿é³ö´í£º"+e);
 			throw e;
 		}
-		ferryRequestService.changeRequestStatus(request.getRequestId(), FerryStatus.PARTITION_COMPLETE);
+		request.setStatus(new FerryStatus(FerryStatus.PARTITION_COMPLETE));
 		if(!result) {
-			ferryRequestService.changeRequestStatus(request.getRequestId(), FerryStatus.CACHE_FOR_BURNING);
+			request.setStatus(new FerryStatus(FerryStatus.CACHE_FOR_BURNING));
 		} else {
-			ferryRequestService.changeRequestStatus(request.getRequestId(), FerryStatus.WAIT_BURNING);
+			request.setStatus(new FerryStatus(FerryStatus.WAIT_BURNING));
 		}
 		
 		if (logger.isDebugEnabled()) {
