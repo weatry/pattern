@@ -87,3 +87,5 @@ __Step 4: Decorator pattern is used to add additional functionality.__
 1. Add trivial function to a component.
 2. Why don't use chain pattern?
 
+__Step 5: Protect burning files by clone them before return to users.__
+
