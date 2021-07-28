@@ -14,18 +14,20 @@ public class Ship {
 	}
 
 	public boolean canSailToday(Weather weather) {
+		if(!isEquipmentsAbnormal() && weather.isFitForSail()) {
+			return true;
+		}
+
+		return false;
+	}
+
+	public boolean isEquipmentsAbnormal() {
 		for(Equipment e:equipments) {
 			if(e.isAbnormal()) {
-				return false;
+				return true;
 			}
 		}
 		
-		if (weather.getMaxWindPower() > 6
-				|| "storm".equals(weather.getTyping())
-				|| weather.getTemperature() < -10) {
-			return false;
-		}
-
-		return true;
+		return false;
 	}
 }

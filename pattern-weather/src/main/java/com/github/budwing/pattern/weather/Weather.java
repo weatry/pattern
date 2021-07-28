@@ -6,6 +6,19 @@ public class Weather {
 	private Integer maxWindPower;
 	private String windDirection;
 
+	public Weather() {
+		super();
+	}
+
+	public Weather(String typing, Double temperature, Integer maxWindPower,
+			String windDirection) {
+		super();
+		this.typing = typing;
+		this.temperature = temperature;
+		this.maxWindPower = maxWindPower;
+		this.windDirection = windDirection;
+	}
+
 	public String getTyping() {
 		return typing;
 	}
@@ -36,5 +49,15 @@ public class Weather {
 
 	public void setWindDirection(String windDirection) {
 		this.windDirection = windDirection;
+	}
+
+	public boolean isFitForSail() {
+		if (getMaxWindPower() > 6
+				|| "storm".equals(getTyping())
+				|| getTemperature() < -10) {
+			return false;
+		}
+		
+		return true;
 	}
 }
