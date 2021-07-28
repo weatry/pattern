@@ -89,3 +89,5 @@ __Step 4: Decorator pattern is used to add additional functionality.__
 
 __Step 5: Protect burning files by clone them before return to users.__
 
+__Step 6: Null Object is used to remove null check in DataEncryptor.__
+
