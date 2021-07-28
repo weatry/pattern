@@ -96,3 +96,7 @@ __Step 6: Null Object is used to remove null check in DataEncryptor.__
 It's a shipping system. It has a service to determine whether it is suitable for sailing based on the weather condition.
 It's a very simple example to illustrate refactor and feature envy, information expert in GRASP.
 
+## octree
+
+Scenario tree is used to render 3D scenes. It usually has 8 sub-tree, and it is a complex data structure to operate.
+How to change the node in the tree?
