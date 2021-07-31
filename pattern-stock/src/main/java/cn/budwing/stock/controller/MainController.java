@@ -32,13 +32,9 @@ public class MainController extends Controller {
 		frame.setVisible(true);
 		return frame;
 	}
-	@Override
+	
 	public boolean handleEvent(AppEvent event) {
-		if("RepaintMain".equals(event.getMsg())) {
-			this.buildView();
-			return true;
-		}
-		return false;
+		return event.handleEvent(this);
 	}
 	
 }
