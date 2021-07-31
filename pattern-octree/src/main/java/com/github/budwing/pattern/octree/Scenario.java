@@ -1,5 +1,7 @@
 package com.github.budwing.pattern.octree;
 
+import java.util.Iterator;
+
 public class Scenario {
 	private double x;
 	private double y;
@@ -113,5 +115,13 @@ public class Scenario {
 		this.x = this.x - x;
 		this.y = this.y - y;
 		this.z = this.z - z;
+	}
+	
+	public Iterator<Scenario> iterator() {
+		return new ScenarioIterator(this);
+	}
+
+	public String toString() {
+		return "Scenario [x=" + x + ", y=" + y + ", z=" + z + "]";
 	}
 }
