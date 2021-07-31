@@ -132,3 +132,7 @@ __Step 3: Extract amountFor method from statement - git checkout rental.3.__
 __Step 4: Move amountFor to Rental and rename it to getCharge - git checkout rental.4.__
 
 *Feature Envy or information expert.*
+
+__Step 5: Extract and move getFrequentRenterPoints - git checkout rental.5.__
+
+*Same as what has been done with rental.getCharge.*
