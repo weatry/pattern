@@ -117,7 +117,10 @@ It also shows the difference between inheritance and strategy pattern.
 
 I added some improvement, so it's not exactly as same as in the book.
 
-__Step 1: Add unit test - git checkout rental.1 - git checkout rental.1.__
+__Step 1: Add unit test - git checkout rental.1.__
 
 *Unit test can make you more confident to refactor. In most of the cases that you are unwilling to refactor, you are afraid of breaking the system after your refactor.*
 
+__Step 2: Rename local variable 'each' to 'rental' - git checkout rental.2.__
+
+*A meaningful variable name can be helpful to refactor*
