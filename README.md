@@ -143,7 +143,9 @@ __Step 6: Remove local variable 'thisAmount' by inlining it - git checkout renta
 2. Inlining variable may impact performance. Refactor it first, and see whether it has impact finally. 
 All too often you can find better way to reduce this kind of impact. And it will benefit the whole program.
 
-__Step 7: Extract getTotalCharges & getTotalFrequentRenterPoints - git checkout rental.6.__
+__Step 7: Extract getTotalCharges & getTotalFrequentRenterPoints - git checkout rental.7.__
 
 1. A loop should only have one responsibility.
 2. It may impact performance too, refactor it first and see.
+
+__Step 8: Inline local variable 'totalAmount' and 'totalFrequentRenterPoints' - git checkout rental.8.__
