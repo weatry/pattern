@@ -128,3 +128,7 @@ __Step 2: Rename local variable 'each' to 'rental' - git checkout rental.2.__
 __Step 3: Extract amountFor method from statement - git checkout rental.3.__
 
 *All too often a statement block should be extract as a independent method*
+
+__Step 4: Move amountFor to Rental and rename it to getCharge - git checkout rental.4.__
+
+*Feature Envy or information expert.*
