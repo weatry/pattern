@@ -66,30 +66,30 @@ After refactoring, the following patterns will be used to improve the quality:
 It's a system which is used to transport data from secure realm to unsecured realm and vice versa. 
 During the transportation, the system needs to collect data first, validate and encrypt them next, and transport them to unsecured realm finally.  
 
-__Step 1: Use chain of responsibility to separate DefaultExportProcessor's responsibility.__
+__Step 1: Use chain of responsibility to separate DefaultExportProcessor's responsibility. - git checkout ferry.1__
 
 1. In DefaultExportProcessor, the instance of DataEncryptor has a close relationship with method encrypt(); the instance of PartitionWorker has a close relationship with method partition(). These property won't be used in other method, so they should be extracted as a independent class.
 2. DefaultExportProcessor has too many responsibility, which violates SRP.
 3. Making the whole process like a pipeline, that will make it easier to add extra steps to the whole process.
 
-__Step 2: Decoupling FerryRequest and FerryRequestService by Observer pattern.__
+__Step 2: Decoupling FerryRequest and FerryRequestService by Observer pattern. - git checkout ferry.2__
 
 1. Observer pattern is a good way to decouple components.
 2. Be aware of synchronized problem under multiple thread situation.
 
-__Step 3: Solve FerryStatus sharing issue by Flyweight pattern.__
+__Step 3: Solve FerryStatus sharing issue by Flyweight pattern. - git checkout ferry.3__
 
 1. FerryStatus instance is created frequently, here and there.
 2. Why don't use singleton for each instance?
 
-__Step 4: Decorator pattern is used to add additional functionality.__
+__Step 4: Decorator pattern is used to add additional functionality. - git checkout ferry.4__
 
 1. Add trivial function to a component.
 2. Why don't use chain pattern?
 
-__Step 5: Protect burning files by clone them before return to users.__
+__Step 5: Protect burning files by clone them before return to users. - git checkout ferry.5__
 
-__Step 6: Null Object is used to remove null check in DataEncryptor.__
+__Step 6: Null Object is used to remove null check in DataEncryptor. - git checkout ferry.6__
 
 ## weather
 
@@ -100,3 +100,10 @@ It's a very simple example to illustrate refactor and feature envy, information 
 
 Scenario tree is used to render 3D scenes. It usually has 8 sub-tree, and it is a complex data structure to operate.
 How to change the node in the tree?
+
+__Step 1: Add iterator based on pre-order traversal - git checkout octree.1.__
+
+*Even when you get all the nodes, node must exposes method to allow the users to operate.*
+*That means if you want a new operation on nodes, nodes must add a new method exposed to you.*
+
+__Step 2: Protect burning files by clone them before return to users. - git checkout octree.2__
