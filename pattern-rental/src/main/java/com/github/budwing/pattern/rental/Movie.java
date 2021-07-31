@@ -4,20 +4,10 @@ public class Movie {
 	private String title;
 	private Price price;
 	
-	public Movie(String title, int priceCode) {
+	public Movie(String title, Price price) {
 		super();
 		this.title = title;
-		switch(priceCode) {
-		case Price.REGULAR:
-			price = new RegularPrice();
-			break;
-		case Price.NEW_RELEASE:
-			price = new NewReleasePrice();
-			break;
-		case Price.CHILDREN:
-			price = new ChildrenPrice();
-			break;
-		}
+		this.price = price;
 	}
 
 	public String getTitle() {
