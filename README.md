@@ -91,6 +91,16 @@ __Step 5: Protect burning files by clone them before return to users. - git chec
 
 __Step 6: Null Object is used to remove null check in DataEncryptor. - git checkout ferry.6__
 
+Patterns used in this project:
+
+1. Chain of Responsibility
+2. Observer
+3. Flyweight
+4. Decorator
+5. Prototype
+6. Factory
+7. Null Object
+
 ## weather
 
 It's a shipping system. It has a service to determine whether it is suitable for sailing based on the weather condition.
@@ -108,6 +118,12 @@ __Step 1: Add iterator based on pre-order traversal - git checkout octree.1.__
 
 __Step 2: Protect burning files by clone them before return to users. - git checkout octree.2__
 
+Patterns used in this projects:
+
+1. Iterator
+2. Visitor
+
+They are common patterns that are commonly used in complex data structure process.
 
 ## rental
 
@@ -160,3 +176,7 @@ __Step 10: Remove switch statement by strategy pattern. - git checkout rental.10
 __Step 11: Remove priceCode£¬move constant to Price  - git checkout rental.11.__
 
 __Step 12: Change constant to sub class of Price - git checkout rental.12.__
+
+## sequence
+
+It's an exercise for refactoring. This project is a service which will be used to generate sequence id.

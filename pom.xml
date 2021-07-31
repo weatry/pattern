@@ -14,6 +14,7 @@
         <module>pattern-weather</module>
         <module>pattern-octree</module>
         <module>pattern-rental</module>
+        <module>pattern-sequence</module>
     </modules>
 
 
