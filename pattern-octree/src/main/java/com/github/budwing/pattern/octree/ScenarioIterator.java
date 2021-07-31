@@ -19,20 +19,17 @@ public class ScenarioIterator implements Iterator<Scenario> {
 
 	@Override
 	public boolean hasNext() {
-		// TODO Auto-generated method stub
 		return it.hasNext();
 	}
 
 	@Override
 	public Scenario next() {
-		// TODO Auto-generated method stub
 		return it.next();
 	}
 
 	@Override
 	public void remove() {
-		// TODO Auto-generated method stub
-		
+
 	}
 	
 	private void populateNodes(Scenario s) {
