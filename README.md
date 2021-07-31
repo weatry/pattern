@@ -136,3 +136,10 @@ __Step 4: Move amountFor to Rental and rename it to getCharge - git checkout ren
 __Step 5: Extract and move getFrequentRenterPoints - git checkout rental.5.__
 
 *Same as what has been done with rental.getCharge.*
+
+__Step 6: Remove local variable 'thisAmount' by inlining it - git checkout rental.5.__
+
+1. Local variable may be harmful to extracting method
+2. Inlining variable may impact performance. Refactor it first, and see whether it has impact finally. 
+All too often you can find better way to reduce this kind of impact. And it will benefit the whole program.
+

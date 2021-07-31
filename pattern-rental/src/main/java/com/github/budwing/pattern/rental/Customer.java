@@ -26,11 +26,10 @@ public class Customer {
 		String result = "Rental Record for " + getName() + "\n";
 		
 		for(Rental rental:rentals) {
-			double thisAmount = rental.getCharge();
 			frequentRenterPoints += rental.getFrequentRenterPoints();
 			
-			result += "\t" + rental.getMovie().getTitle() + "\t" + thisAmount + "\n";
-			totalAmount += thisAmount;
+			result += "\t" + rental.getMovie().getTitle() + "\t" + rental.getCharge() + "\n";
+			totalAmount += rental.getCharge();
 		}
 		
 		result += "Amount owed is " + totalAmount + "\n";
