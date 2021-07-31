@@ -15,6 +15,7 @@
         <module>pattern-octree</module>
         <module>pattern-rental</module>
         <module>pattern-sequence</module>
+        <module>pattern-monitor</module>
     </modules>
 
 

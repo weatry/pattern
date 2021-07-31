@@ -179,4 +179,9 @@ __Step 12: Change constant to sub class of Price - git checkout rental.12.__
 
 ## sequence
 
-It's an exercise for refactoring. This project is a service which will be used to generate sequence id.
+It's an exercise for refactoring. This project provides a service to generate sequence id.
+
+## monitor
+
+It's an exercise for refactoring.
+
