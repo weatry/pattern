@@ -107,3 +107,13 @@ __Step 1: Add iterator based on pre-order traversal - git checkout octree.1.__
 *That means if you want a new operation on nodes, nodes must add a new method exposed to you.*
 
 __Step 2: Protect burning files by clone them before return to users. - git checkout octree.2__
+
+
+## rental
+
+This module is from Martin Flowler's book 'Refactoring: Improving the Design of Existing Code'. It's a very good example to illustrate the power of refactoring. 
+It shows how to import patterns to your project during refactoring.
+It also shows the difference between inheritance and strategy pattern. 
+
+I added some improvement, so it's not exactly as same as in the book.
+

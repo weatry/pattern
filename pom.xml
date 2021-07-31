@@ -13,6 +13,7 @@
         <module>pattern-ferry</module>
         <module>pattern-weather</module>
         <module>pattern-octree</module>
+        <module>pattern-rental</module>
     </modules>
 
 
