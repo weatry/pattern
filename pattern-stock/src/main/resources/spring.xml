@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/tx
+                           http://www.springframework.org/schema/tx/spring-tx.xsd
+                           http://www.springframework.org/schema/aop
+                           http://www.springframework.org/schema/aop/spring-aop.xsd"
+	>
+    <tx:annotation-driven transaction-manager="txManager" />
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"        
+         destroy-method="close">
+	     <property name="driverClass" value="com.mysql.jdbc.Driver"/>
+	     <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/finance?useUnicode=true&amp;characterEncoding=utf-8"/>
+	     <property name="user" value="root"/>
+	     <property name="password" value="root"/>
+	</bean>   
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="mappingResources">
+			<list>
+				<value>cn/budwing/stock/vo/Stock.hbm.xml</value>
+				<value>cn/budwing/stock/vo/Buying.hbm.xml</value>
+				<value>cn/budwing/stock/vo/Selling.hbm.xml</value>
+				<value>cn/budwing/stock/vo/Fund.hbm.xml</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<value>
+				hibernate.dialect=org.hibernate.dialect.MySQL5Dialect
+				hibernate.show_sql=true
+				hibernate.format_sql=true
+				hibernate.cache.use_query_cache=false
+				hibernate.cache.region.factory_class=org.hibernate.cache.ehcache.EhCacheRegionFactory
+			</value>
+		</property>
+	</bean>
+	<bean id="txManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate4.HibernateTemplate">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="baseDao" class="cn.budwing.stock.dao.impl.BaseDaoImpl" abstract="true">
+		<property name="hibernateTemplate" ref="hibernateTemplate" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="stockDao" class="cn.budwing.stock.dao.impl.StockDaoImpl" parent="baseDao">
+		<property name="entityClass" value="cn.budwing.stock.vo.Stock" />
+	</bean>
+	<bean id="buyingDao" class="cn.budwing.stock.dao.impl.BuyingDaoImpl" parent="baseDao">
+		<property name="entityClass" value="cn.budwing.stock.vo.Buying" />
+	</bean>
+	
+	<bean id="mainToolbar" class="cn.budwing.stock.view.MainToolBar">
+		<property name="controller" ref="mainToolbarController" />
+	</bean>
+	<bean id="mainToolbarController" class="cn.budwing.stock.controller.MainToolBarController">
+		<property name="view" ref="mainToolbar" />
+		<property name="parent" ref="mainController" />
+		<property name="children">
+			<list>
+				<ref bean="addBuyingController"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="operationToolbar" class="cn.budwing.stock.view.OperationToolBar">
+		<property name="controller" ref="mainToolbarController" />
+	</bean>
+	<bean id="operationToolbarController" class="cn.budwing.stock.controller.OperationToolBarController">
+		<property name="view" ref="operationToolbar" />
+		<property name="parent" ref="mainController" />
+		
+	</bean>
+	
+	<bean id="addBuyingView" class="cn.budwing.stock.view.AddBuyingView">
+		<property name="controller" ref="addBuyingController" />
+	</bean>
+	<bean id="addBuyingController" class="cn.budwing.stock.controller.AddBuyingController">
+		<property name="view" ref="addBuyingView" />
+		<property name="model" ref="buyingDao" />
+		<property name="parent" ref="mainToolbarController" />
+	</bean>
+	
+	<bean id="buyingTable" class="cn.budwing.stock.view.BuyingTable">
+		<property name="controller" ref="buyingTableController" />
+	</bean>
+	<bean id="buyingTableController" class="cn.budwing.stock.controller.BuyingTableController">
+		<property name="parent" ref="mainController" />
+		<property name="view" ref="buyingTable" />
+		<property name="model" ref="buyingDao" />
+	</bean>
+	
+	<bean id="mainView" class="cn.budwing.stock.view.MainView">
+		<property name="initWidth" value="800" />
+		<property name="initHeight" value="600" />
+	</bean>
+	<bean id="mainController" class="cn.budwing.stock.controller.MainController">
+		<property name="model" ref="buyingDao" />
+		<property name="view" ref="mainView" />
+		<property name="children">
+			<list>
+				<ref bean="mainToolbarController" />
+				<ref bean="buyingTableController" />
+				<ref bean="operationToolbarController" />
+			</list>
+		</property>
+	</bean>
+</beans>

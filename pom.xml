@@ -16,6 +16,7 @@
         <module>pattern-rental</module>
         <module>pattern-sequence</module>
         <module>pattern-monitor</module>
+        <module>pattern-stock</module>
     </modules>
 
 

@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2014-12-6 22:33:32 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="cn.budwing.stock.vo.Buying" table="buying" catalog="finance" optimistic-lock="version">
+        <id name="id" type="string">
+            <column name="buy_id" length="32" />
+            <generator class="uuid" />
+        </id>
+        <property name="stockId" type="string">
+            <column name="stock_id" length="32" />
+        </property>
+        <property name="stockCode" type="string">
+            <column name="buy_stock_code" length="6">
+                <comment>&#194;&#242;&#200;&#235;&#202;&#177;&#181;&#196;&#185;&#201;&#198;&#177;&#180;&#250;&#194;&#235;&#163;&#172;&#206;&#170;&#191;&#236;&#213;&#213;</comment>
+            </column>
+        </property>
+        <property name="stockName" type="string">
+            <column name="buy_stock_name" length="50">
+                <comment>&#194;&#242;&#200;&#235;&#202;&#177;&#181;&#196;&#185;&#201;&#198;&#177;&#195;&#251;&#179;&#198;&#163;&#172;&#206;&#170;&#191;&#236;&#213;&#213;</comment>
+            </column>
+        </property>
+        <property name="date" type="timestamp">
+            <column name="buy_date" length="19" />
+        </property>
+        <property name="price" type="java.lang.Float">
+            <column name="buy_price" precision="12" scale="0" />
+        </property>
+        <property name="amount" type="java.lang.Integer">
+            <column name="buy_amount" />
+        </property>
+        <property name="lossPrice" type="java.lang.Float">
+            <column name="buy_loss_price" precision="12" scale="0" />
+        </property>
+        <property name="targetPrice" type="java.lang.Float">
+            <column name="buy_target_price" precision="12" scale="0" />
+        </property>
+        <property name="holdDays" type="java.lang.Integer">
+            <column name="buy_hold_max_days">
+                <comment>
+                &#188;&#198;&#187;&#174;&#179;&#214;&#211;&#208;&#202;&#177;&#188;&#228;&#163;&#172;&#210;&#212;&#189;&#187;&#210;&#215;&#200;&#213;&#206;&#170;&#181;&#165;&#206;&#187;</comment>
+            </column>
+        </property>
+        <property name="notes" type="string">
+            <column name="buy_notes" length="65535" />
+        </property>
+        
+        <bag name="sellings">
+        	<key column="buy_id" />
+        	<one-to-many class="cn.budwing.stock.vo.Selling"/>
+        </bag>
+    </class>
+</hibernate-mapping>

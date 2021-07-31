@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2014-12-6 22:33:32 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="cn.budwing.stock.vo.Fund" table="funds" catalog="finance" optimistic-lock="version">
+        <id name="id" type="string">
+            <column name="fund_id" length="32" />
+            <generator class="assigned" />
+        </id>
+        <property name="amount" type="java.lang.Float">
+            <column name="fund_amount" precision="12" scale="0" />
+        </property>
+        <property name="date" type="timestamp">
+            <column name="fund_date" length="19" />
+        </property>
+        <property name="reason" type="string">
+            <column name="fund_reason" length="50" />
+        </property>
+        <property name="balance" type="java.lang.Float">
+            <column name="fund_balance" precision="12" scale="0" />
+        </property>
+        <property name="notes" type="string">
+            <column name="fund_notes" length="65535" />
+        </property>
+    </class>
+</hibernate-mapping>

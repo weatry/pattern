@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2014-12-6 22:33:32 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="cn.budwing.stock.vo.Selling" table="selling" catalog="finance" optimistic-lock="version">
+        <id name="id" type="string">
+            <column name="sell_id" length="32" />
+            <generator class="uuid" />
+        </id>
+        <property name="buyId" type="string">
+            <column name="buy_id" length="32" />
+        </property>
+        <property name="stockId" type="string">
+            <column name="stock_id" length="32" />
+        </property>
+        <property name="stockCode" type="string">
+            <column name="sell_stock_code" length="6" />
+        </property>
+        <property name="stockName" type="string">
+            <column name="sell_stock_name" length="50" />
+        </property>
+        <property name="date" type="timestamp">
+            <column name="sell_date" length="19" />
+        </property>
+        <property name="price" type="java.lang.Float">
+            <column name="sell_price" precision="12" scale="0" />
+        </property>
+        <property name="amount" type="java.lang.Integer">
+            <column name="sell_amount" />
+        </property>
+        <property name="notes" type="string">
+            <column name="sell_notes" length="65535" />
+        </property>
+    </class>
+</hibernate-mapping>

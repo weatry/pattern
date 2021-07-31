@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2014-12-6 22:33:32 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="cn.budwing.stock.vo.Plate" table="plates" catalog="finance" optimistic-lock="version">
+        <id name="id" type="string">
+            <column name="plate_id" length="32" />
+            <generator class="assigned" />
+        </id>
+        <property name="code" type="string">
+            <column name="plate_code" length="6" />
+        </property>
+        <property name="name" type="string">
+            <column name="plate_name" length="50" />
+        </property>
+        <property name="notes" type="string">
+            <column name="plate_notes" length="65535" />
+        </property>
+    </class>
+</hibernate-mapping>

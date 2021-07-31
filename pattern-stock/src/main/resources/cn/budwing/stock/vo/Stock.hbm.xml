@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2014-12-6 22:33:32 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+	<class catalog="finance" name="cn.budwing.stock.vo.Stock" table="stocks">
+		<id name="id" type="string">
+			<column length="32" name="stock_id" />
+			<generator class="uuid" />
+		</id>
+		<property generated="never" lazy="false" name="code" type="string">
+			<column length="6" name="stock_code" />
+		</property>
+		<property generated="never" lazy="false" name="name" type="string">
+			<column length="50" name="stock_name" />
+		</property>
+		<property generated="never" lazy="false" name="notes" type="string">
+			<column length="65535" name="stock_notes" />
+		</property>
+	</class>
+</hibernate-mapping>

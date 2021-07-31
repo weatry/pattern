@@ -101,11 +101,6 @@ Patterns used in this project:
 6. Factory
 7. Null Object
 
-## weather
-
-It's a shipping system. It has a service to determine whether it is suitable for sailing based on the weather condition.
-It's a very simple example to illustrate refactor and feature envy, information expert in GRASP.
-
 ## octree
 
 Scenario tree is used to render 3D scenes. It usually has 8 sub-tree, and it is a complex data structure to operate.
@@ -176,6 +171,17 @@ __Step 10: Remove switch statement by strategy pattern. - git checkout rental.10
 __Step 11: Remove priceCode£¬move constant to Price  - git checkout rental.11.__
 
 __Step 12: Change constant to sub class of Price - git checkout rental.12.__
+
+## stock
+
+This project is used to illustrate visitor pattern as well as PAC, HMVC.
+
+
+
+## weather
+
+It's a shipping system. It has a service to determine whether it is suitable for sailing based on the weather condition.
+It's a very simple example to illustrate refactor and feature envy, information expert in GRASP.
 
 ## sequence
 
