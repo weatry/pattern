@@ -149,3 +149,8 @@ __Step 7: Extract getTotalCharges & getTotalFrequentRenterPoints - git checkout 
 2. It may impact performance too, refactor it first and see.
 
 __Step 8: Inline local variable 'totalAmount' and 'totalFrequentRenterPoints' - git checkout rental.8.__
+
+__Step 9: Move getCharge and getFrequentRenterPoints to Movie - git checkout rental.9.__
+
+1. A method uses too many properties of other class, but it ought to be a member of current class logically.
+2. Middleman can be used here to be a mediator, just like Rental keeps the method but has no content.
