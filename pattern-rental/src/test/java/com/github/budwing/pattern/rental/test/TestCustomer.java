@@ -2,6 +2,7 @@ package com.github.budwing.pattern.rental.test;
 
 import com.github.budwing.pattern.rental.Customer;
 import com.github.budwing.pattern.rental.Movie;
+import com.github.budwing.pattern.rental.Price;
 import com.github.budwing.pattern.rental.Rental;
 import org.junit.Assert;
 import org.junit.Before;
@@ -16,9 +17,9 @@ public class TestCustomer {
 	@Test
 	public void testStatement() {
 		Customer tom = new Customer("tom");
-		Movie m1 = new Movie("Avantar", Movie.REGULAR);
-		Movie m2 = new Movie("The Transformer", Movie.NEW_RELEASE);
-		Movie m3 = new Movie("Sherk", Movie.CHILDREN);
+		Movie m1 = new Movie("Avantar", Price.REGULAR);
+		Movie m2 = new Movie("The Transformer", Price.NEW_RELEASE);
+		Movie m3 = new Movie("Sherk", Price.CHILDREN);
 		
 		tom.addRental(new Rental(m1, 3));
 		tom.addRental(new Rental(m2, 4));
