@@ -124,3 +124,7 @@ __Step 1: Add unit test - git checkout rental.1.__
 __Step 2: Rename local variable 'each' to 'rental' - git checkout rental.2.__
 
 *A meaningful variable name can be helpful to refactor*
+
+__Step 3: Extract amountFor method from statement - git checkout rental.3.__
+
+*All too often a statement block should be extract as a independent method*
