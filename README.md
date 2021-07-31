@@ -157,3 +157,4 @@ __Step 9: Move getCharge and getFrequentRenterPoints to Movie - git checkout ren
 
 __Step 10: Remove switch statement by strategy pattern. - git checkout rental.10.__
 
+__Step 11: Remove priceCode£¬move constant to Price  - git checkout rental.11.__
