@@ -154,3 +154,6 @@ __Step 9: Move getCharge and getFrequentRenterPoints to Movie - git checkout ren
 
 1. A method uses too many properties of other class, but it ought to be a member of current class logically.
 2. Middleman can be used here to be a mediator, just like Rental keeps the method but has no content.
+
+__Step 10: Remove switch statement by strategy pattern. - git checkout rental.10.__
+
