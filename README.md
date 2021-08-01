@@ -184,6 +184,10 @@ __Step 2: Pull up handleEvent in XXXController to super class Controller - git c
 
 *handleEvents in XXXController are all same after moving logical to AppEvent.*
 
+__Step 3: Merge handleEvent in AppEvent - git checkout stock.3.__
+
+__Step 4: Remove branch in AppEvent by different sub-class - implement yourself__
+
 ## weather
 
 It's a shipping system. It has a service to determine whether it is suitable for sailing based on the weather condition.

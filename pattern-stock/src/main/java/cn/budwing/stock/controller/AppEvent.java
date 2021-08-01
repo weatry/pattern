@@ -46,27 +46,21 @@ public class AppEvent {
 		this.msg = msg;
 	}
 
-	public boolean handleEvent(Controller addBuyingController) {
+	public boolean handleEvent(Controller controller) {
 		if(getMsg().equals("AddBuying")) {
-			BuyingDao dao = (BuyingDao) addBuyingController.getModel();
+			BuyingDao dao = (BuyingDao) controller.getModel();
 			dao.insert(getData());
 			return true;
 		} else if ("ShowAddBuying".equals(getMsg())) {
-			addBuyingController.getView().buildView();
+			controller.getView().buildView();
 			return true;
-		}
-		
-		return false;
-	}
-
-	public boolean handleEvent(BuyingTableController buyingTableController) {
-		if("GetOnGoingBuying".equals(getMsg())) {
-			BuyingDao buyingDao = (BuyingDao)buyingTableController.getModel();
+		} else if("GetOnGoingBuying".equals(getMsg())) {
+			BuyingDao buyingDao = (BuyingDao)controller.getModel();
 			setData(buyingDao.selectOngoing());
 			return true;
 		} else if ("DelBuying".equals(getMsg())) {
-			BuyingDao dao = (BuyingDao) buyingTableController.getModel();
-			BuyingTable bt = (BuyingTable) buyingTableController.getView();
+			BuyingDao dao = (BuyingDao) controller.getModel();
+			BuyingTable bt = (BuyingTable) controller.getView();
 			BuyingTableModel model = (BuyingTableModel) bt.getTable()
 					.getModel();
 	
@@ -80,16 +74,12 @@ public class AppEvent {
 				dao.delete(buyingToDel);
 			}
 			return true;
-		} 
+		} else if("RepaintMain".equals(getMsg())) {
+			controller.buildView();
+			return true;
+		}
 		
 		return false;
 	}
 
-	public boolean handleEvent(MainController mainController) {
-		if("RepaintMain".equals(getMsg())) {
-			mainController.buildView();
-			return true;
-		}
-		return false;
-	}
 }
