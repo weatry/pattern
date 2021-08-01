@@ -6,8 +6,4 @@ public class AddBuyingController extends Controller {
 		return view.buildView();
 	}
 
-	public boolean handleEvent(AppEvent event) {
-		return event.handleEvent(this);
-	}
-
 }

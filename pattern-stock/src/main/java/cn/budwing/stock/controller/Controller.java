@@ -71,6 +71,9 @@ public abstract class Controller {
 		return this;
 	}
 	
-	public abstract boolean handleEvent(AppEvent event);
 	public abstract Object buildView();
+
+	public boolean handleEvent(AppEvent event) {
+		return event.handleEvent(this);
+	}
 }

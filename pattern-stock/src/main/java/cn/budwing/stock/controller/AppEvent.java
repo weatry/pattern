@@ -46,7 +46,7 @@ public class AppEvent {
 		this.msg = msg;
 	}
 
-	public boolean handleEvent(AddBuyingController addBuyingController) {
+	public boolean handleEvent(Controller addBuyingController) {
 		if(getMsg().equals("AddBuying")) {
 			BuyingDao dao = (BuyingDao) addBuyingController.getModel();
 			dao.insert(getData());

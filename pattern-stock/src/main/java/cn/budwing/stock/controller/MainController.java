@@ -33,8 +33,4 @@ public class MainController extends Controller {
 		return frame;
 	}
 	
-	public boolean handleEvent(AppEvent event) {
-		return event.handleEvent(this);
-	}
-	
 }

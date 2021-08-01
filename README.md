@@ -176,7 +176,13 @@ __Step 12: Change constant to sub class of Price - git checkout rental.12.__
 
 This project is used to illustrate visitor pattern as well as PAC, HMVC.
 
+__Step 1: Move handleEvent to AppEvent - git checkout stock.1.__
 
+*handleEvent in XXXController is still kept, but it just invokes AppEvent.handleEvent*
+
+__Step 2: Pull up handleEvent in XXXController to super class Controller - git checkout stock.2.__
+
+*handleEvents in XXXController are all same after moving logical to AppEvent.*
 
 ## weather
 
