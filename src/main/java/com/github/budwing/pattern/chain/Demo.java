@@ -4,12 +4,10 @@ package com.github.budwing.pattern.chain;
 public class Demo {
 
 	public static void main(String[] args) {
-		ExceptionHolder sql = new SQLExceptionHolder();
-		ExceptionHolder io = new IOExceptionHolder();
-		sql.setSuccessor(io);
-		io.setSuccessor(new NullExceptionHolder());
-		
-		ExceptionHolder chain = sql;
+
+		ExceptionHolder chain = ExceptionHolder.createChain(new SQLExceptionHolder(),
+				new IOExceptionHolder(),
+				new NullExceptionHolder());
 		
 		chain.process(new Exception());
 	}
