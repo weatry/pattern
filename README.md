@@ -59,7 +59,7 @@ We didn't try to utilize patterns during refactoring, but patterns were utilized
 After refactoring, the following patterns will be used to improve the quality:
 * Command Pattern
 * Bridge Pattern
-* Factory Pattern
+* Template Pattern
 
 ## ferry
 
