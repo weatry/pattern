@@ -1,6 +1,6 @@
-package com.training.refactor.visitors;
+package com.github.budwing.pattern.visitors;
 
-import com.training.refactor.tree.Scenario;
+import com.github.budwing.pattern.octree.Scenario;
 
 public class SubVisitor implements ScenarioVisitor {
 	private double x;
