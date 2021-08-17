@@ -11,7 +11,7 @@ public class MyList {
 
 		public MyIterator(Object[] datas, int length) {
 			super();
-			this.datas = datas;
+			this.datas = datas.clone();
 			this.length = length;
 		}
 

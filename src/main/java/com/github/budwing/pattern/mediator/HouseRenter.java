@@ -1,7 +1,9 @@
 package com.github.budwing.pattern.mediator;
 
 public class HouseRenter {
-	public float ownHouse() {
+	private Mediator mediator;
+	public float pay() {
+		//mediator
 		return 3000;
 	}
 }
