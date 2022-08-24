@@ -1,6 +1,6 @@
 # Pattern
 
-Exercise and demo for design pattern.
+Exercise and demo for design pattern and refactor. If you want me to help you refactor your code, please fork this repository, add your source code as a submodule and create pull request. It's better to add a README file to help me understand your code.
 
 ## alarm
 
