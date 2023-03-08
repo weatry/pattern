@@ -12,7 +12,7 @@ The original source code was messy, how to refactor it to pattern?
 
 __Step 1: Extract timeFormat as a global property - git checkout alarm.1__
 
-*When extracting methods, variables used by many method should be escalate as a global property.*
+*When extracting methods, variables used by many method should be escalated as a global property.*
 
 __Step 2: Exact three send method, each method represents a kind of send measure - git checkout alarm.2__
 
