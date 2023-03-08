@@ -7,7 +7,6 @@ public class SQLExceptionHolder extends ExceptionHolder {
 	public void process(Exception e) {
 		if(e instanceof SQLException) {
 			System.out.println("SQL Exception occur!");
-			return;
 		} else {
 			ExceptionHolder holder = getSuccessor();
 			if(holder!=null) {

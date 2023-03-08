@@ -6,9 +6,10 @@ public class Demo {
 
 	public static void main(String[] args) {
 		ArrayList list = new ArrayList();
-		ArrayList d = new ArrayListDecorator(list);
+		ArrayList d1 = new ArrayListDecorator(list);
+		ArrayList d2 = new ArrayListDec2(d1);
 		
-		d.add("dd");
+		d2.add("dd");
 		System.out.println(list.get(0));
 	}
 

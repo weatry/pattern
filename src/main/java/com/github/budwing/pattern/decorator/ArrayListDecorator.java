@@ -16,3 +16,18 @@ public class ArrayListDecorator extends ArrayList {
 	}
 
 }
+
+class ArrayListDec2 extends ArrayList {
+	private ArrayList list;
+
+	public ArrayListDec2(ArrayList list) {
+		this.list = list;
+	}
+
+	public boolean add(Object arg0) {
+
+		boolean b = list.add(arg0);
+		System.out.println("finish add");
+		return b;
+	}
+}

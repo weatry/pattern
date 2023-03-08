@@ -10,6 +10,7 @@ public class Demo {
 				new NullExceptionHolder());
 		
 		chain.process(new Exception());
+
 	}
 
 }
