@@ -1,4 +1,4 @@
-package com.github.budwing.pattern.proxy;
+package com.github.budwing.pattern.proxy.dpnative;
 
 import java.io.IOException;
 import java.io.OutputStream;

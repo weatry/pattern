@@ -1,4 +1,4 @@
-package com.github.budwing.pattern.proxy;
+package com.github.budwing.pattern.proxy.lazyinit;
 
 import java.sql.Connection;
 

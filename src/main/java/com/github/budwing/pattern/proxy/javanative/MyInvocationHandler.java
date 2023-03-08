@@ -1,4 +1,4 @@
-package com.github.budwing.pattern.proxy;
+package com.github.budwing.pattern.proxy.javanative;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
