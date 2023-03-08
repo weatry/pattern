@@ -6,7 +6,7 @@ public class Demo {
 		School s = new School();
 		s.addObserver(new Student());
 		s.addObserver(new Teacher());
-		s.addObserver(new Goverment());
+		s.addObserver(new Government());
 		
 		s.publishMsg("some message");
 	}
