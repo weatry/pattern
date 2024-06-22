@@ -1,8 +1,40 @@
-# Pattern
+# Pattern with Refactor
 
-Exercise and demo for design pattern and refactor. If you want me to help you refactor your code, please fork this repository, add your source code as a submodule and create pull request. It's better to add a README file to help me understand your code.
+Examples and exercises for design pattern and refactor. 
+If you want me to help you refactor your code, please fork this repository, add your source code as a submodule and create pull request. 
+It's better to add a README file to help me understand your code.
 
-## alarm
+## Prerequisite
+Please install the following software if you want to run or practice this project.
+### JDK
+The project is based on Java, so JDK is mandatory.
+- Download and install either [Oracle JDK](https://www.oracle.com/java/technologies/downloads/#java8) or 
+[OpenJDK](https://www.openlogic.com/openjdk-downloads), JDK 1.8 is preferred.
+- Set up 'JAVA_HOME' environment variable to the JDK path
+
+### Git
+We commited each refactor step and tagged them by git. So it will be easier to see the steps if git is installed.
+Download git from [here](https://git-scm.com/download/) and add its binary to PATH. I assume you are familiar with Git.
+
+### IDE(Optional)
+An IDE is a good plus to help you understand the source code. Choose one of your favorite IDE and install it:
+
+- [IntelliJ IDEA](https://www.jetbrains.com/idea/download/?section=windows), community version is enough
+- [Eclipse](https://www.eclipse.org/downloads/)
+
+### Maven(Optional)
+The project is managed by Maven, so it's good to install Maven also, but it's not mandatory.
+- [Download Apache Maven](https://maven.apache.org/download.cgi), choose the latest binary package, unzip it to a specific directory.
+- Add Maven '/bin' to the environment variable 'PATH'.
+- Configure it following the [instruction](https://maven.apache.org/configure.html) (Normally, it's not required).
+
+To summary, [JDK](https://www.oracle.com/java/technologies/downloads/#java8) and [GIT](https://git-scm.com/download/) is required if you want to run/practice the examples/exercises by yourself.
+An IDE that supports Java is a good plus, such as [IntelliJ IDEA Community](https://www.jetbrains.com/idea/download/?section=windows).
+
+## Refactor Examples
+The main src folder contains basic 23 patterns according to GOF. Other submodules are refactor examples and exercises.
+
+### alarm
 
 It's a project for alerting. 
 The system needs to send out different kinds of messages through different kinds of devices, such as email, phone, fax.
@@ -61,7 +93,7 @@ After refactoring, the following patterns will be used to improve the quality:
 * Bridge Pattern
 * Template Pattern
 
-## ferry
+### ferry
 
 It's a system which is used to transport data from secure realm to unsecured realm and vice versa. 
 During the transportation, the system needs to collect data first, validate and encrypt them next, and transport them to unsecured realm finally.  
@@ -101,7 +133,7 @@ Patterns used in this project:
 6. Factory
 7. Null Object
 
-## octree
+### octree
 
 Scenario tree is used to render 3D scenes. It usually has 8 sub-tree, and it is a complex data structure to operate.
 How to change the node in the tree?
@@ -120,7 +152,7 @@ Patterns used in this projects:
 
 They are common patterns that are commonly used in complex data structure process.
 
-## rental
+### rental
 
 This module is from Martin Flowler's book 'Refactoring: Improving the Design of Existing Code'. It's a very good example to illustrate the power of refactoring. 
 It shows how to import patterns to your project during refactoring.
@@ -172,7 +204,7 @@ __Step 11: Remove priceCode£¬move constant to Price  - git checkout rental.11.
 
 __Step 12: Change constant to sub class of Price - git checkout rental.12.__
 
-## stock
+### stock
 
 This project is used to illustrate visitor pattern as well as PAC, HMVC.
 
@@ -188,16 +220,16 @@ __Step 3: Merge handleEvent in AppEvent - git checkout stock.3.__
 
 __Step 4: Remove branch in AppEvent by different sub-class - implement yourself__
 
-## weather
+### weather
 
 It's a shipping system. It has a service to determine whether it is suitable for sailing based on the weather condition.
 It's a very simple example to illustrate refactor and feature envy, information expert in GRASP.
 
-## sequence
+### sequence
 
 It's an exercise for refactoring. This project provides a service to generate sequence id.
 
-## monitor
+### monitor
 
 It's an exercise for refactoring.
 
