@@ -14,12 +14,8 @@ public class Ship {
 	}
 
 	public boolean canSailToday(Weather weather) {
-		if(!isEquipmentsAbnormal() && weather.isFitForSail()) {
-			return true;
-		}
-
-		return false;
-	}
+        return !isEquipmentsAbnormal() && weather.isFitForSail();
+    }
 
 	public boolean isEquipmentsAbnormal() {
 		for(Equipment e:equipments) {
