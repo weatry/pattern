@@ -3,15 +3,15 @@ package com.github.budwing.pattern.state;
 public class Pupa implements ButterFlyState {
 
 	public void eat() {
-		System.out.println("我是蛹，我不吃东西！");
+		System.out.println("Pupa does not eat.");
 	}
 
 	public void fly() {
-		System.out.println("我是蛹，我不能飞！");
+		System.out.println("Pupa cannot fly during metamorphosis.");
 	}
 
 	public void walk() {
-		System.out.println("我是蛹，我不能动！");
+		System.out.println("Pupa is immobile鈥攏o walking.");
 	}
 
 }

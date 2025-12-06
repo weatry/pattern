@@ -13,25 +13,25 @@ public class ButterflyInOldStyle {
 
 	public void walk() {
 		if ("grub".equals(state)) {
-			System.out.println("我是幼虫，我只能爬！");
+			System.out.println("Grub crawls on the ground.");
 		} else {
-			System.out.println("我是成虫，我能走了！");
+			System.out.println("Imago walks delicately on flowers.");
 		}
 	}
 
 	public void fly() {
 		if ("grub".equals(state)) {
-			System.out.println("我是幼虫，我不能飞！");
+			System.out.println("Grub cannot fly.");
 		} else {
-			System.out.println("我是成虫，我可以飞！");
+			System.out.println("Imago flies beautifully through the air!");
 		}
 	}
 
 	public void eat() {
 		if ("grub".equals(state)) {
-			System.out.println("我是幼虫，我吃青菜！");
+			System.out.println("Grub eats leaves constantly.");
 		} else {
-			System.out.println("我是成虫，我采蜜！");
+			System.out.println("Imago sips nectar from blossoms.");
 		}
 	}
 }
