@@ -1,5 +1,5 @@
 package com.github.budwing.pattern.mediator;
 
-public class Mediator {
-	
+public interface Mediator {
+    void notify(Colleague source, String msg);
 }
