@@ -17,6 +17,7 @@
         <module>pattern-sequence</module>
         <module>pattern-monitor</module>
         <module>pattern-stock</module>
+        <module>pattern-java</module>
     </modules>
 
 
