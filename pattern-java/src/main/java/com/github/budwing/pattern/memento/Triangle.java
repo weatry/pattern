@@ -1,22 +1,22 @@
 package com.github.budwing.pattern.memento;
 
-public class Trangle {
+public class Triangle {
 	private int a;
 	private int b;
 	private int c;
 
-	public Trangle(int a, int b, int c) {
+	public Triangle(int a, int b, int c) {
 		super();
 		this.a = a;
 		this.b = b;
 		this.c = c;
 	}
-	
-	public TrangleMemento getState() {
-		return new TrangleMemento(a, b, c);
+
+	public TriangleMemento getState() {
+		return new TriangleMemento(a, b, c);
 	}
-	
-	public void restoreState(TrangleMemento memento) {
+
+	public void restoreState(TriangleMemento memento) {
 		a = memento.getA();
 		b = memento.getB();
 		c = memento.getC();

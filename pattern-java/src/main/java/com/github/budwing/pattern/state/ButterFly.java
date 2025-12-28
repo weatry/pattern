@@ -1,13 +1,13 @@
 package com.github.budwing.pattern.state;
 
-public class ButterFly {
-	private ButterFlyState state;
+public class Butterfly {
+	private ButterflyState state;
 
-	public ButterFlyState getState() {
+	public ButterflyState getState() {
 		return state;
 	}
 
-	public void setState(ButterFlyState state) {
+	public void setState(ButterflyState state) {
 		this.state = state;
 	}
 

@@ -2,13 +2,11 @@ package com.github.budwing.pattern.proxy.dpnative;
 
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
 
 public class LogOutputStream extends OutputStream {
 	private static int count = 0;
 	private OutputStream target;
-	
+
 	public LogOutputStream(OutputStream out) {
 		this.target = out;
 		synchronized (target) {

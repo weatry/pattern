@@ -10,6 +10,6 @@ public abstract class Customer {
 	public void setType(String type) {
 		this.type = type;
 	}
-	
-	public abstract float calculate(float amount);
+
+	public abstract float discount(float amount);
 }

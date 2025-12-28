@@ -1,6 +1,6 @@
 package com.github.budwing.pattern.state;
 
-public class Pupa implements ButterFlyState {
+public class Pupa implements ButterflyState {
 
 	public void eat() {
 		System.out.println("Pupa does not eat.");

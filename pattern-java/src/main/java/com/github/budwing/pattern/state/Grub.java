@@ -1,6 +1,6 @@
 package com.github.budwing.pattern.state;
 
-public class Grub implements ButterFlyState {
+public class Grub implements ButterflyState {
 
 	public void eat() {
 		System.out.println("Grub eats leaves constantly.");

@@ -1,6 +1,6 @@
 package com.github.budwing.pattern.state;
 
-public class Imago implements ButterFlyState {
+public class Imago implements ButterflyState {
 
 	public void eat() {
 		System.out.println("Imago sips nectar from blossoms.");

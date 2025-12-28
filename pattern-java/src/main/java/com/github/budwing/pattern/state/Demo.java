@@ -2,10 +2,10 @@ package com.github.budwing.pattern.state;
 
 public class Demo {
 	public static void main(String[] args) {
-		ButterFlyState state = new Grub();
-		ButterFlyState state1 = new Imago();
+		ButterflyState state = new Grub();
+		ButterflyState state1 = new Imago();
 
-		ButterFly fly = new ButterFly();
+		Butterfly fly = new Butterfly();
 		fly.setState(state);
 		fly.walk();
 		fly.setState(state1);

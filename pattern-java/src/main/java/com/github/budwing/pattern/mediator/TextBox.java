@@ -18,8 +18,4 @@ public class TextBox extends Colleague {
             mediator.notify(this, "textChanged");
         }
     }
-
-    public void reactTo(Colleague colleague, String eventName) {
-        System.out.println("TextBox " + name + ": react to " + eventName);
-    }
 }

@@ -1,11 +1,11 @@
 package com.github.budwing.pattern.memento;
 
-public class TrangleMemento {
+public class TriangleMemento {
 	private int a;
 	private int b;
 	private int c;
 
-	public TrangleMemento(int a, int b, int c) {
+	public TriangleMemento(int a, int b, int c) {
 		super();
 		this.a = a;
 		this.b = b;

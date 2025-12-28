@@ -1,17 +1,17 @@
 package com.github.budwing.pattern.iterator;
 
 public class MyList {
-	private Object[] datas = new Object[100];
+	private Object[] data = new Object[100];
 	private int length = 0;
 
 	private class MyIterator implements Iterator {
-		private Object[] datas;
+		private Object[] data;
 		private int length;
 		private int pos;
 
-		public MyIterator(Object[] datas, int length) {
+		public MyIterator(Object[] data, int length) {
 			super();
-			this.datas = datas;
+			this.data = data;
 			this.length = length;
 		}
 
@@ -21,8 +21,8 @@ public class MyList {
 
 		public Object next() {
 			Object obj = null;
-			if(pos<length) {
-				obj = datas[pos];
+			if (pos < length) {
+				obj = data[pos];
 				pos++;
 			}
 			return obj;
@@ -31,11 +31,11 @@ public class MyList {
 	}
 
 	public void add(Object obj) {
-		datas[length] = obj;
+		data[length] = obj;
 		length++;
 	}
 
 	public Iterator iterator() {
-		return new MyIterator(this.datas, this.length);
+		return new MyIterator(this.data, this.length);
 	}
 }
